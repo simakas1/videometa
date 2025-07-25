@@ -1,0 +1,8 @@
+### Authenticate user
+POST {{host}}/auth/login
+Content-Type: application/json
+
+{
+  "username": "testUser",
+  "password": "changeme"
+}

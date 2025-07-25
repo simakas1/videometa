@@ -1,0 +1,31 @@
+server:
+  servlet:
+    context-path: /api/v1
+
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.orm.jdbc.bind: TRACE
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: changeme
+  data:
+    redis:
+      host: localhost
+      port: 6379
+  cache:
+    type: redis
+
+security:
+  jwt:
+    secretKey: e6d0e2f583c349aaa24b780183bfde7aa136a556ad0230232b889683ec56e846
+    expirationTimeInMillis: 900000 # 15 minutes in milliseconds
+    issuer: https://svaskevicius.lt
+
+cache:
+  entries:
+    user_data: 900
