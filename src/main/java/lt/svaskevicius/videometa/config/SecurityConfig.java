@@ -38,7 +38,7 @@ public class SecurityConfig {
       "/auth/login",
       "/actuator/health",
       "/swagger-ui/**",
-      "/v3/api-docs/**",
+      "/api-docs/**",
   };
 
   @Bean
@@ -47,7 +47,7 @@ public class SecurityConfig {
         .csrf(AbstractHttpConfigurer::disable)
         .authorizeHttpRequests(auth -> auth
             .requestMatchers(PUBLIC_ENDPOINTS).permitAll()
-            .anyRequest().hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
+            .anyRequest().hasAnyAuthority("ADMIN", "USER")
         )
         .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
         .authenticationProvider(authenticationProvider())
@@ -64,7 +64,7 @@ public class SecurityConfig {
   public AuthenticationEntryPoint customAuthenticationEntryPoint() {
     return (request, response, authException) -> {
       throw new BadCredentialsException(
-          "Authentication required: " + authException.getMessage()
+          authException.getMessage()
       );
     };
   }

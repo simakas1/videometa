@@ -92,7 +92,7 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
       return userDetailsService.loadUserByUsername(username);
     } catch (final UsernameNotFoundException e) {
       log.warn("User not found: {}", username);
-      throw new BadCredentialsException("User not found: " + username, e);
+      throw new BadCredentialsException("User not found", e);
     }
   }
 }

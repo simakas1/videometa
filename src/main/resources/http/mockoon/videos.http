@@ -1,0 +1,3 @@
+### Get videos
+GET http://localhost:3000/api/v3/videos
+Content-Type: application/json

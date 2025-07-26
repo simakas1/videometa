@@ -1,0 +1,4 @@
+### Get video statistics
+GET {{host}}/videos/stats
+Content-Type: application/json
+Authorization: Bearer {{token}}

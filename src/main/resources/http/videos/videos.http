@@ -1,9 +1,116 @@
-### Import video
-POST {{host}}/videos/import
+### Filter by source (partial match)
+GET {{host}}/videos?source=CodeAcademyX&page=0&size=10
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
-### Get videos
-GET {{host}}/videos
+### Filter by source (case insensitive)
+GET {{host}}/videos?source=MockProvider&page=0&size=10
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+### Filter by upload date - from specific date
+GET {{host}}/videos?uploadDateFrom=2024-01-01&page=0&size=10
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+### Filter by upload date - to specific date
+GET {{host}}/videos?uploadDateTo=2024-12-31&page=0&size=10
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+### Filter by upload date range
+GET {{host}}/videos?uploadDateFrom=2024-08-01&uploadDateTo=2024-08-15&page=0&size=10
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+### Filter by minimum duration (30 seconds)
+GET {{host}}/videos?durationFrom=30&page=0&size=10
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+### Filter by maximum duration (5 minutes = 300 seconds)
+GET {{host}}/videos?durationTo=300&page=0&size=10
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+### Filter by duration range (1-10 minutes)
+GET {{host}}/videos?durationFrom=60&durationTo=600&page=0&size=10
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+### Combined: source + date range
+GET {{host}}/videos?source=VideoLearnHub&uploadDateFrom=2024-01-01&uploadDateTo=2024-06-30&page=0&size=10
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+### Combined: source + duration range
+GET {{host}}/videos?source=MockProvider&durationFrom=120&durationTo=900&page=0&size=10
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+### Combined: date range + duration range
+GET {{host}}/videos?uploadDateFrom=2024-03-01&uploadDateTo=2024-09-30&durationFrom=60&durationTo=500&page=0&size=10
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+### Combined: all filters
+GET {{host}}/videos?source=MockProvider&uploadDateFrom=2024-01-01&uploadDateTo=2024-12-31&durationFrom=30&
+    durationTo=600&
+    page=0&size=10
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+### Filter by source, sorted by upload date (newest first)
+GET {{host}}/videos?source=MockProvider&sortBy=uploadDate&sortDirection=DESC&page=0&size=10
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+### Filter by duration range, sorted by duration (shortest first)
+GET {{host}}/videos?durationFrom=60&durationTo=600&sortBy=duration&sortDirection=ASC&page=0&size=10
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+### Filter by date range, sorted by title
+GET {{host}}/videos?uploadDateFrom=2024-06-01&sortBy=title&sortDirection=ASC&page=0&size=10
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+### Empty source filter (should return all)
+GET {{host}}/videos?source=&page=0&size=10
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+### Non-existent source
+GET {{host}}/videos?source=nonexistentsource&page=0&size=10
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+### Future date range (should return empty)
+GET {{host}}/videos?uploadDateFrom=2030-01-01&uploadDateTo=2030-12-31&page=0&size=10
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+### Filter with pagination - page 2
+GET {{host}}/videos?source=MockProvider&page=1&size=5
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+### Filter with large page size
+GET {{host}}/videos?uploadDateFrom=2024-01-01&page=0&size=50
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+### Filter with different page sizes
+GET {{host}}/videos?durationFrom=60&page=0&size=3
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+###
+GET {{host}}/videos?durationFrom=60&page=1&size=3
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+###
+GET {{host}}/videos?durationFrom=60&page=2&size=3
 Content-Type: application/json
 Authorization: Bearer {{token}}

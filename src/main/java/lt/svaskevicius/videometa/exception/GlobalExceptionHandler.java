@@ -8,6 +8,7 @@ import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authorization.AuthorizationDeniedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -25,6 +26,19 @@ public class GlobalExceptionHandler {
         Instant.now()
     );
     return ResponseEntity.status(ex.getHttpStatus()).body(errorResponse);
+  }
+
+  @ExceptionHandler(AuthorizationDeniedException.class)
+  public ResponseEntity<ErrorResponse> handleAuthorizationDenied(final AuthorizationDeniedException ex) {
+    log.warn("Authorization denied: {}", ex.getMessage());
+
+    final ErrorResponse errorResponse = new ErrorResponse(
+        HttpStatus.FORBIDDEN.name(),
+        "Access denied: insufficient permissions",
+        Instant.now()
+    );
+
+    return ResponseEntity.status(HttpStatus.FORBIDDEN).body(errorResponse);
   }
 
   @ExceptionHandler(MethodArgumentNotValidException.class)

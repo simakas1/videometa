@@ -7,7 +7,7 @@ import lombok.Builder;
 public record TokenData(
     String token,
     Date issuedAt,
-    Date expiredAt
+    Date expiresAt
 ) {
 
 }

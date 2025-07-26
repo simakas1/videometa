@@ -47,7 +47,7 @@ public class JwtTokenProvider {
 
     return TokenData.builder()
         .issuedAt(Date.from(now))
-        .expiredAt(Date.from(expiration))
+        .expiresAt(Date.from(expiration))
         .token(token)
         .build();
   }

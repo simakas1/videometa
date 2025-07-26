@@ -1,0 +1,4 @@
+### Whoami
+GET {{host}}/auth/whoami
+Content-Type: application/json
+Authorization: Bearer {{token}}

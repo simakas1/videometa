@@ -1,8 +1,35 @@
-### Authenticate user
+### Authenticate user (Permissions: All)
 POST {{host}}/auth/login
 Content-Type: application/json
 
 {
-  "username": "testUser",
+  "username": "admin",
+  "password": "changeme"
+}
+
+### Authenticate user (Permissions: Read videos, Read analytics)
+POST {{host}}/auth/login
+Content-Type: application/json
+
+{
+  "username": "analytic",
+  "password": "changeme"
+}
+
+### Authenticate user (Permissions: Read videos)
+POST {{host}}/auth/login
+Content-Type: application/json
+
+{
+  "username": "default",
+  "password": "changeme"
+}
+
+### Authenticate user (Permissions: Read videos, Import videos, Read analytics)
+POST {{host}}/auth/login
+Content-Type: application/json
+
+{
+  "username": "default_video_importer_analytic",
   "password": "changeme"
 }

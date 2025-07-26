@@ -1,0 +1,4 @@
+### Import video
+POST {{host}}/videos/import
+Content-Type: application/json
+Authorization: Bearer {{token}}

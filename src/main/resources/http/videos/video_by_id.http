@@ -1,0 +1,4 @@
+### Get video by id
+GET {{host}}/videos/5a992759-d0d4-4293-bd6a-acd818f02829
+Content-Type: application/json
+Authorization: Bearer {{token}}

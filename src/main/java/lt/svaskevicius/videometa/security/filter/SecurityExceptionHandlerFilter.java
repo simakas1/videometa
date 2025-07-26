@@ -36,12 +36,12 @@ public class SecurityExceptionHandlerFilter extends OncePerRequestFilter {
       filterChain.doFilter(request, response);
     } catch (final AuthenticationException ex) {
       handleSecurityException(response, ex, HttpStatus.UNAUTHORIZED,
-          "Authentication required: " + ex.getMessage());
+          ex.getMessage());
     } catch (final AccessDeniedException ex) {
       handleSecurityException(response, ex, HttpStatus.FORBIDDEN,
-          "Access denied: Insufficient permissions");
+          "Insufficient permissions");
     } catch (final Exception ex) {
-      log.error("Unexpected error in security filter chain", ex);
+      log.warn("Unexpected error in security filter chain", ex);
       handleSecurityException(response, ex, HttpStatus.INTERNAL_SERVER_ERROR,
           "An unexpected error occurred. Please try again later.");
     }
