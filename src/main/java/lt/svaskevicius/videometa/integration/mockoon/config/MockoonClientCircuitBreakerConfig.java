@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 public class MockoonClientCircuitBreakerConfig {
 
   @Bean
-  public CircuitBreaker mockCircuitBreaker() {
+  public CircuitBreaker mockoonCircuitBreaker() {
     final CircuitBreakerConfig config = getDefaultConfig();
     return CircuitBreakerRegistry.of(config).circuitBreaker("mockoonClientCircuitBreaker");
   }

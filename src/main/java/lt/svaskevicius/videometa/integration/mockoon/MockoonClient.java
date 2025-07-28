@@ -20,8 +20,8 @@ public class MockoonClient {
   private final CircuitBreaker circuitBreaker;
   private final RestClient restClient;
 
-  public MockoonClient(final CircuitBreaker mockCircuitBreaker, final RestClient mockoonRestClient) {
-    this.circuitBreaker = mockCircuitBreaker;
+  public MockoonClient(final CircuitBreaker mockoonCircuitBreaker, final RestClient mockoonRestClient) {
+    this.circuitBreaker = mockoonCircuitBreaker;
     this.restClient = mockoonRestClient;
   }
 
